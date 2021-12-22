@@ -1,3 +1,6 @@
+Proyecto para el curso de ReactJs de Corderhouse: Creando un ecommerce, con su carrito.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
