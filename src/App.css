@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+
+.customList > button {
+  color: #060d0f;
+  background-color: white;
+  text-decoration: none;
+  padding: 10px 10px;
+  font-size: 17px;
+  margin: 15px 15px;
+  font-family: Arial;
+  border-radius: 22px;
+  border: none;
+
+}
+
+.customList > button a {
+  text-decoration: none;
+  color: #060d0f;
+}
+
+.customList > button:hover {
+  background-color: rgba(236, 236, 231, 0.555);
+}
