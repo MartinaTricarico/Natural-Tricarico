@@ -37,14 +37,19 @@
   }
 }
 
+.customList {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
 
 .customList > button {
   color: #060d0f;
   background-color: white;
   text-decoration: none;
-  padding: 10px 10px;
+  padding: 5px px;
   font-size: 17px;
-  margin: 15px 15px;
+  margin: 10px 10px;
   font-family: Arial;
   border-radius: 22px;
   border: none;
@@ -58,4 +63,22 @@
 
 .customList > button:hover {
   background-color: rgba(236, 236, 231, 0.555);
+}
+
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart p{
+  font-size: 20px;
+  
+}
+
+.catalogo {
+  background-color: rgba(230, 230, 230, 0.705);
+  font-size: 25px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
 }

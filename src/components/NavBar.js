@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import './CartWidget';
-import cartWidget from './CartWidget';
+import CartWidget from './CartWidget';
 
 // class NavBar extends React.Component {
 //     render () {
@@ -47,9 +46,9 @@ const NavBar = (props) => {
                             <button>
                                 <a href='#' style={{color:"#7EB488"}}><b>Mi cuenta</b></a>
                             </button>
-                            
+                            <CartWidget/>
                         </div>
-                        <cartWidget/>
+                        
                     </div>
                 </Fragment>
                 
