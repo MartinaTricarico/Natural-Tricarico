@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import React, { Fragment } from 'react';
 import './App.css';
 import NavBar from './components/NavBar'
 
@@ -23,5 +24,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;

@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import './CartWidget';
+import cartWidget from './CartWidget';
 
 // class NavBar extends React.Component {
 //     render () {
@@ -29,7 +31,7 @@ const NavBar = (props) => {
                     justifyContent: "space-between",
                     alignItems: "flex-start"
                 }
-        
+                
                 return <Fragment>
                     <div style={costumStyle}><h1 style={{color: "#7EB488", display: "flex", }}>{props.mensaje}</h1>
                         <div className="customList">
@@ -45,9 +47,12 @@ const NavBar = (props) => {
                             <button>
                                 <a href='#' style={{color:"#7EB488"}}><b>Mi cuenta</b></a>
                             </button>
+                            
                         </div>
+                        <cartWidget/>
                     </div>
                 </Fragment>
+                
                 
 }
 
