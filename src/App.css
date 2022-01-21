@@ -69,6 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .cart p{
@@ -80,13 +81,14 @@
   background-color: rgba(230, 230, 230, 0.705);
   font-size: 25px;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
+  overflow: hidden;
 }
 
 .count {
   border: 1px solid rgb(57, 112, 50);
   margin: 46px 565px;
   padding: 21px 41px;
+  overflow: hidden;
   border-radius: 45px;
 }
 
@@ -94,6 +96,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .number Button{
@@ -118,4 +121,28 @@
   color: #000;
   background-color: #7aca92;
   border-radius: 15px;
+}
+
+.producto {
+  overflow: hidden;
+  border: 1px solid #dbdbdb;
+  margin: 36px 415px;
+  padding: 21px 41px;
+  border-radius: 45px;
+}
+
+.producto p{
+  font-size: 20px;
+
+}
+
+.producto Button {
+  margin: 25px;
+  color: #000;
+  background-color: #58b674;
+  border-radius: 15px;
+}
+
+.producto .stock {
+  color: #000;
 }
