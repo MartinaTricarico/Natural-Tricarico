@@ -1,24 +1,6 @@
 import React, { Fragment } from 'react';
 import CartWidget from './CartWidget';
 
-// class NavBar extends React.Component {
-//     render () {
-//         const costumStyle = {
-//             backgroundColor: "grey",
-//             padding: 10,
-//             fontFamily: "Arial",
-//             color: "black",
-//             fontSize: "25px"
-//         }
-
-//         return (
-//             <div style={costumStyle}>Menú</div>
-//         )
-            
-        
-//     }
-// }
-
 const NavBar = (props) => {
     const costumStyle = {
                     backgroundColor: "white",
