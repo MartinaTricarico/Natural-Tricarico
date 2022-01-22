@@ -1,5 +1,3 @@
-import { TextFormatRounded } from '@material-ui/icons';
-import { Button } from "@material-ui/core";
 import React from 'react';
 import Item from './Item';
 import { productListData } from "./ProductListData.js";

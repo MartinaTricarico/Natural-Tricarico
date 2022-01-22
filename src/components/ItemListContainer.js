@@ -12,22 +12,19 @@ const ItemListContainer = () => {
     }, 2000);
   });
 
-  getFetch()
-  .then(productListData => {
-    console.log (productListData)
-  });
+  getFetch.then(data => {
+    console.log (data)
+  }).catch((err =>{
+    console.log('Hay un error', err)
+  }))
  
-  
-  
   return  (
     <>
         <div className='catalogo'>
             <h3>Catálogo</h3>
         </div>
 
-        <div className='catalogoProductos'>
-          <p>{productList}</p>
-        </div>
+        
         <ItemList  />
 
         <ItemCount
