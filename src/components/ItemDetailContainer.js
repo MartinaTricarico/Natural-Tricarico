@@ -1,23 +1,32 @@
-import React from 'react';
+import React from "react";
+import { useEffect, useState } from "react";
+import ItemDetail from "./ItemDetail.js";
+import {productListData} from "./ProductListData.js"; 
 
-const ItemDetailContainer = ()=> {
-
-    const getProductsFromCategory = (category) => {
-        return fetch('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/products/classify')
-        .then(data => {
-           data.json();
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
-
-    return (
-        <div>
-            
-        </div>
-
-  )
+export const getFetch = (id) => {
+  return new Promise ((resolve, reject) => {
+    const product = productListData.find((product)=>{
+      return product.id === id
+    })
+    resolve(product)
+  })
 }
+
+const ItemDetailContainer = ({ item }) => {
+  const [product, setProduct] = useState();
+
+  useEffect(() => {
+    getFetch(item).then((results) => {
+      setProduct(results);
+    });
+  }, [item]);
+
+
+  return (
+    <div>
+      {product ? <ItemDetail item={product}/> : null}
+    </div>
+  )
+};
 
 export default ItemDetailContainer;
