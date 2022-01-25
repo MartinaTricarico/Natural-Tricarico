@@ -21,7 +21,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          CorderHouse
+          CoderHouse
         </a>
       </header>
     </div>

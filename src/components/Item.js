@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from "@material-ui/core";
 
-const Item = ({product}) => {
-    const {title, details, pictureUrl, stock} = product || []
+const Item = ({productos}) => {
+    const {title, details, pictureUrl, stock} = productos || []
     return (
         <div className='producto'>
             <div display="flex">

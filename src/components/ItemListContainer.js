@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ItemCount from './ItemCount';
 import ItemList from './ItemList';
-import { productListData } from "./ProductListData.js";
-
+import {productListData} from "./ItemList.js";
 
 const ItemListContainer = () => {
   
+  const [productListData , setProductListData] = useState ([])
+
   const getFetch = new Promise ((resolve, reject) => {
     setTimeout(() => {
       resolve(productListData)
     }, 2000);
   });
 
-  getFetch.then(data => {
-    console.log (data)
-  }).catch((err =>{
+  getFetch.then(productos => {setProductListData(productos)}
+  ).catch((err =>{
     console.log('Hay un error', err)
   }))
  
