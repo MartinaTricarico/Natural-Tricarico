@@ -1,25 +1,25 @@
 import React, {useState} from 'react';
+import { makeStyles } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import { NavLink } from 'react-router-dom';
 
-const Item = ({ item, setItemSeleccionado }) => {
-    
+
+const Item = ({ item }) => {
+
     const { title, details, pictureUrl, stock, id} = item || [];
     return (
-        <div className='producto'>
-            <div display="flex">
+        <div >
+            <div >
                 <div>
                     <h2>{title}</h2>
                 </div>
-                <div>
-
-                </div>
-                    <img src={pictureUrl} alt='' width={150}/>
+                    <img src={pictureUrl} alt='' width={130}/>
                 <div>
                     <p>Detalle: {details} </p>
                 </div>
 
                 <div>
-                    <Button variant="contained" onClick={() => setItemSeleccionado(id)}>Ver detalle del producto</Button>
+                    <NavLink to={`/item/${id}`}><Button variant="contained">Ver detalle del producto</Button></NavLink>
                 </div>
                 
                 <div>

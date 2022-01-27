@@ -1,29 +1,30 @@
-import logo from './logo.svg';
-import React, { Fragment } from 'react';
+import React from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar'
-import ItemListContainer from './components/ItemListContainer'
+import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
+
 
 function App() {
   const greeting = "Hola"
   return (
     <div className="App">
-      <NavBar mensaje="Natural Tienda" />
-      <ItemListContainer greeting={greeting}/>
+
+      <BrowserRouter>
+
+        <NavBar mensaje="Natural Tienda" />
+        <Routes>
+          <Route exact path="/" element={<ItemListContainer/>} />
+          <Route path="/category/:id" element={<ItemListContainer/>} />
+          <Route path="/item/:id" element={<ItemDetailContainer/>} />
+        </Routes>
+      
+      </BrowserRouter>
+
+      
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Natural tienda
-        </p>
-        <a
-          className="App-link"
-          href="https://plataforma.coderhouse.com/ingresar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          CoderHouse
-        </a>
+        
       </header>
     </div>
   );

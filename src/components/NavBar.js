@@ -1,40 +1,83 @@
-import React, { Fragment } from 'react';
-import CartWidget from './CartWidget';
+import { makeStyles } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import CartWidget from "./CartWidget";
+
+const useStyle = makeStyles(() => ({
+  containerLink: {
+    backgroundColor: "white",
+    padding: 20,
+    fontFamily: "Pushster, cursive",
+    color: "black",
+    fontSize: "35px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+  },
+  customList: {
+    display: "flex",
+    justifyContent: "space-around",
+    flexDirection: "row",
+  },
+  logo: {
+    color: "#7EB488",
+    display: "flex",
+    textDecoration: "none",
+    '&:hover': {
+      color: "#81b29a"
+    }
+  },
+  buttonLink: {
+    color: "#060d0f",
+    backgroundColor: "white",
+    textDecoration: "none",
+    padding: "5px 0px",
+    fontSize: "17px",
+    margin: "10px 10px",
+    fontFamily: "Arial",
+    borderRadius: "22px",
+    border: "none",
+    '&:hover': {
+      color: "#81b29a"
+    }
+  },
+}));
 
 const NavBar = (props) => {
-    const costumStyle = {
-                    backgroundColor: "white",
-                    padding: 20,
-                    fontFamily: "Pushster, cursive",
-                    color: "black",
-                    fontSize: "35px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start"
-                }
-                
-                return <Fragment>
-                    <div style={costumStyle}><h1 style={{color: "#7EB488", display: "flex", }}>{props.mensaje}</h1>
-                        <div className="customList">
-                            <button>
-                                <a href='#'>Inicio</a>
-                            </button>
-                            <button>
-                                <a href='#'>Productos</a>
-                            </button>
-                            <button>
-                                <a href='#'>Contacto</a>
-                            </button>
-                            <button>
-                                <a href='#' style={{color:"#7EB488"}}><b>Mi cuenta</b></a>
-                            </button>
-                            <CartWidget/>
-                        </div>
-                        
-                    </div>
-                </Fragment>
-                
-                
-}
+  const classes = useStyle();
+  return (
+    <Fragment>
+      <div className={classes.containerLink}>
+          <Link to='/' className={classes.logo}>
+                <h1 >{props.mensaje}</h1>
+          </Link>
+
+        <div className={classes.customList}>
+          <Link to="/" className={classes.buttonLink}>
+            Inicio
+          </Link>
+
+          <Link to="/products" className={classes.buttonLink}>
+            Productos
+          </Link>
+
+          <Link to="/contacto" className={classes.buttonLink}>
+            Contacto
+          </Link>
+
+          <Link
+            to="/acount"
+            className={classes.buttonLink}
+            style={{ fontWeight: "bold", color: "#7EB488" }}
+          >
+            Mi cuenta
+          </Link>
+
+          <CartWidget />
+        </div>
+      </div>
+    </Fragment>
+  );
+};
 
 export default NavBar;

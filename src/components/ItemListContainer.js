@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import { productListData } from "./ProductListData.js";
-import ItemCount from "./ItemCount";
 import ItemList from "./ItemList";
-import ItemDetailContainer from "./ItemDetailContainer"
+import { makeStyles } from "@material-ui/core";
+
+const useStyle = makeStyles(() => ({
+  catalog: {
+    background: "#e9f5db",
+    height: "45px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-end",
+  }
+    
+}));
 
 export const getFetch = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -10,9 +20,9 @@ export const getFetch = new Promise((resolve, reject) => {
   }, 2000);
 });
 
-const ItemListContainer = () => {
+const ItemListContainer = ({ props }) => {
+  const classes = useStyle();
   const [productos, setProductListData] = useState([]);
-  const [itemSeleccionado, setItemSeleccionado] = useState()
 
   getFetch
     .then((results) => {
@@ -24,14 +34,11 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <div className="catalogo">
+      <div className={classes.catalog}>
         <h3>Catálogo</h3>
       </div>
 
-      <ItemList setItemSeleccionado={setItemSeleccionado} />
-
-      <ItemCount stock={15} initial={1} />
-      <ItemDetailContainer item={itemSeleccionado}/>
+      <ItemList />
     </>
   );
 };
