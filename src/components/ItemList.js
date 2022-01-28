@@ -7,15 +7,18 @@ const useStyle = makeStyles(() => ({
   categoryProducts:{
       display: "flex",
       justifyContent: "space-evenly",
-      alignItems: "flex-end",
-  }
-}));
+      alignItems: "center",
+      border: "1px solid #dbdbdb",
+      borderRadius: "45px",
+      margin: "20px"
+    },
 
+}));
 
 const ItemList = ({ setItemSeleccionado }) => {
   const classes = useStyle();
   return (
-    <div classname={classes.categoryProducts}>
+    <div className={classes.categoryProducts}>
       {productListData.map((item) => {
         return (
           <div key={item.id}>
