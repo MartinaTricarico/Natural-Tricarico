@@ -18,7 +18,7 @@ const useStyle = makeStyles(() => ({
 
 const Item = ({ item }) => {
   const classes = useStyle();
-  const { title, details, pictureUrl, stock, id } = item || [];
+  const { title, pictureUrl, stock, id } = item || [];
   return (
     <div>
       <div>
@@ -26,9 +26,6 @@ const Item = ({ item }) => {
           <h2 className={classes.titulo}>{title}</h2>
         </div>
         <img src={pictureUrl} alt="" width={130} />
-        <div>
-          <p>Detalle: {details} </p>
-        </div>
 
         <div>
           <NavLink to={`/item/${id}`} style={{ textDecoration: "none" }}>
