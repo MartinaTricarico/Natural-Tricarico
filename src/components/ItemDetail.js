@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ItemCount from "./ItemCount";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { makeStyles, Button } from "@material-ui/core";
 
 const useStyle = makeStyles(() => ({
@@ -20,9 +20,8 @@ const useStyle = makeStyles(() => ({
     color: "#fff",
     backgroundColor: "#508d62",
     borderRadius: "15px",
-  }
+  },
 }));
-
 
 const ItemDetail = ({ item }) => {
   const { title, pictureUrl, stock, details } = item || [];
@@ -31,11 +30,15 @@ const ItemDetail = ({ item }) => {
   const volver = () => {
     history("/", { replace: false });
   };
-  
+
+  const [agregarCarrito, setAgregarCarrito] = useState(false);
   const [cambiarBotones, setCambiarBotones] = useState(false);
   const onAdd = () => {
-    setCambiarBotones (true)
-  }
+    setCambiarBotones(true);
+  };
+  const mostrarCarrito = () => {
+    setAgregarCarrito(true);
+  };
 
   return (
     <>
@@ -55,15 +58,22 @@ const ItemDetail = ({ item }) => {
         {cambiarBotones && (
           <>
             <div className={classes.agregarCarrito}>
-              <Button variant="contained" className={classes.contador}>
+              <Button
+                variant="contained"
+                className={classes.contador}
+                onClick={mostrarCarrito}
+              >
                 Agregar al carrito
               </Button>
-            </div>
-            <div className={classes.botonVolver}>
-              <Button onClick={volver}>Volver</Button>
+              {agregarCarrito && (
+                <Button className={classes.contador}  variant="contained"><Link to={"/cart"} style= {{textDecoration: "none", color: "white"}}>Finalizar compra</Link></Button>
+              )}
             </div>
           </>
         )}
+        <div className={classes.botonVolver}>
+          <Button onClick={volver}>Volver</Button>
+        </div>
       </div>
     </>
   );

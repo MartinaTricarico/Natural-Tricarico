@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons";
@@ -39,12 +39,20 @@ const useStyle = makeStyles(() => ({
 const ItemCount = ({ stock, initial, onAdd }) => {
   const classes = useStyle();
   const [itemsQty, setItemsQty] = useState(1);
+  const AddProduct = () => {
+    setItemsQty (itemsQty + 1)
+    onAdd ()
+  }
+  const RestProduct = () => {
+    setItemsQty (itemsQty - 1 )
+    onAdd()
+  }
 
   return (
     <div className={classes.container}>
       <Button
         className={classes.contador}
-        onClick={() => setItemsQty(itemsQty - 1)}
+        onClick={RestProduct}
         disabled={itemsQty === initial}
         variant="contained"
       >
@@ -55,7 +63,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
       <Button
         className={classes.contador}
-        onClick={() => setItemsQty(itemsQty + 1)}
+        onClick={AddProduct}
         disabled={itemsQty === stock}
         variant="contained"
       >
