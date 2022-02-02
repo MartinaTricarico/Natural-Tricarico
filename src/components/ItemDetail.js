@@ -15,6 +15,12 @@ const useStyle = makeStyles(() => ({
     backgroundColor: "#cfe1b9",
     borderRadius: "15px",
   },
+  contador: {
+    margin: "1px",
+    color: "#fff",
+    backgroundColor: "#508d62",
+    borderRadius: "15px",
+  }
 }));
 
 
