@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons";
@@ -36,9 +36,9 @@ const useStyle = makeStyles(() => ({
   },
 }));
 
-const ItemCount = ({ stock, initial, onAdd }) => {
+const ItemCount = ({ stock, itemsQty, setItemsQty , onAdd }) => {
   const classes = useStyle();
-  const [itemsQty, setItemsQty] = useState(1);
+  
   const AddProduct = () => {
     setItemsQty (itemsQty + 1)
     onAdd ()
@@ -53,7 +53,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
       <Button
         className={classes.contador}
         onClick={RestProduct}
-        disabled={itemsQty === initial}
+        disabled={itemsQty === 0}
         variant="contained"
       >
         <Remove style={{ fontSize: 20 }} />

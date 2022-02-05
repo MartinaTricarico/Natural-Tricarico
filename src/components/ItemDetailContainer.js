@@ -6,6 +6,7 @@ import ItemDetail from "./ItemDetail.js";
 import Loading from "./Loading.js";
 import { productListData } from "./ProductListData.js";
 
+
 const useStyle = makeStyles(() => ({
   detailContainer:{
     display: "flex",

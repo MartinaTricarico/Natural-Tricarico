@@ -1,7 +1,9 @@
 import { makeStyles } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import React, { Fragment } from "react";
+import { Link, NavLink } from "react-router-dom";
+import React, { Fragment, useContext, useEffect } from "react";
 import CartWidget from "./CartWidget";
+import { CartContext } from "../context/CartContext";
+
 
 const useStyle = makeStyles(() => ({
   containerLink: {
@@ -23,9 +25,9 @@ const useStyle = makeStyles(() => ({
     color: "#7EB488",
     display: "flex",
     textDecoration: "none",
-    '&:hover': {
-      color: "#81b29a"
-    }
+    "&:hover": {
+      color: "#81b29a",
+    },
   },
   buttonLink: {
     color: "#060d0f",
@@ -37,20 +39,21 @@ const useStyle = makeStyles(() => ({
     fontFamily: "Arial",
     borderRadius: "22px",
     border: "none",
-    '&:hover': {
-      color: "#81b29a"
-    }
+    "&:hover": {
+      color: "#81b29a",
+    },
   },
 }));
 
 const NavBar = (props) => {
   const classes = useStyle();
+  
   return (
     <Fragment>
       <div className={classes.containerLink}>
-          <Link to='/' className={classes.logo}>
-                <h1 >{props.mensaje}</h1>
-          </Link>
+        <Link to="/" className={classes.logo}>
+          <h1>{props.mensaje}</h1>
+        </Link>
 
         <div className={classes.customList}>
           <Link to="/" className={classes.buttonLink}>
@@ -73,7 +76,10 @@ const NavBar = (props) => {
             Mi cuenta
           </Link>
 
-          <CartWidget />
+          <NavLink to="/cart">
+              <CartWidget/>
+          </NavLink>
+
         </div>
       </div>
     </Fragment>

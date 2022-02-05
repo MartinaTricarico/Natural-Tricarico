@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ItemCount from "./ItemCount";
 import { useNavigate, Link } from "react-router-dom";
 import { makeStyles, Button } from "@material-ui/core";
+import { CartContext } from "../context/CartContext";
+
 
 const useStyle = makeStyles(() => ({
   agregarCarrito: {
@@ -24,19 +26,21 @@ const useStyle = makeStyles(() => ({
 }));
 
 const ItemDetail = ({ item }) => {
+  const {addItem} = useContext(CartContext)
   const { title, pictureUrl, stock, details } = item || [];
   const classes = useStyle();
   const history = useNavigate();
   const volver = () => {
     history("/", { replace: false });
   };
-
+  const [itemsQty, setItemsQty] = useState(1);
   const [agregarCarrito, setAgregarCarrito] = useState(false);
   const [cambiarBotones, setCambiarBotones] = useState(false);
   const onAdd = () => {
     setCambiarBotones(true);
   };
-  const mostrarCarrito = () => {
+  const mostrarCarrito = (item, itemsQty) => {
+    addItem(item) 
     setAgregarCarrito(true);
   };
 
@@ -54,19 +58,26 @@ const ItemDetail = ({ item }) => {
           <p>Stock disponible: {stock}</p>
         </div>
 
-        <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+        <ItemCount stock={item.stock} itemsQty={itemsQty} setItemsQty={setItemsQty} onAdd={onAdd} />
         {cambiarBotones && (
           <>
             <div className={classes.agregarCarrito}>
               <Button
                 variant="contained"
                 className={classes.contador}
-                onClick={mostrarCarrito}
+                onClick={() => mostrarCarrito (item, itemsQty)}
               >
                 Agregar al carrito
               </Button>
               {agregarCarrito && (
-                <Button className={classes.contador}  variant="contained"><Link to={"/cart"} style= {{textDecoration: "none", color: "white"}}>Finalizar compra</Link></Button>
+                <Button className={classes.contador} variant="contained">
+                  <Link
+                    to={"/cart"}
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    Finalizar compra
+                  </Link>
+                </Button>
               )}
             </div>
           </>
