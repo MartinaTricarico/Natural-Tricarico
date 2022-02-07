@@ -18,9 +18,9 @@ export const CartProvider = ({ children }) => {
 
   const removeItem = (id) => {
     setItems((prevItems) => {
-        return prevItems.splice(id, 1)
-    })
-}
+      return prevItems.splice(id, 1);
+    });
+  };
 
   useEffect(() => {
     console.log(items);
@@ -28,6 +28,14 @@ export const CartProvider = ({ children }) => {
 
   const cartItems = () => {
     return items.length;
+  };
+
+  const totalCarrito = () => {
+    let total = 0;
+    cartItems.forEach((item) => {
+      total += item.price * item.qty;
+    });
+    return total;
   };
 
   const addItem = (producto, qty) => {
@@ -38,7 +46,14 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ items, setItems, cartItems, addItem, clear, isInCart, removeItem }}
+      value={{
+        items,
+        cartItems,
+        addItem,
+        clear,
+        isInCart,
+        removeItem,
+      }}
     >
       {children}
     </CartContext.Provider>
