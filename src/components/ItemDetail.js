@@ -4,12 +4,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { makeStyles, Button } from "@material-ui/core";
 import { CartContext } from "../context/CartContext";
 
-
 const useStyle = makeStyles(() => ({
   agregarCarrito: {
     marginBottom: "10px",
   },
-
   botonVolver: {
     margin: "5px",
     marginBottom: "15px",
@@ -65,8 +63,7 @@ const ItemDetail = ({ item }) => {
               <Button
                 variant="contained"
                 className={classes.contador}
-                onClick={() => mostrarCarrito (item, itemsQty)}
-              >
+                onClick={() => mostrarCarrito (item, itemsQty)}>
                 Agregar al carrito
               </Button>
               {agregarCarrito && (

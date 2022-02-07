@@ -23,7 +23,6 @@ const App = () => {
         </BrowserRouter>
       </CartProvider>
 
-      <header className="App-header"></header>
     </div>
   );
 };
