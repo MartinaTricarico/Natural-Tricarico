@@ -1,8 +1,9 @@
+import { Button, makeStyles } from "@material-ui/core";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
-import ItemCount from "./ItemCount";
-import { useNavigate, Link } from "react-router-dom";
-import { makeStyles, Button } from "@material-ui/core";
+
 import { CartContext } from "../context/CartContext";
+import ItemCount from "./ItemCount";
 
 const useStyle = makeStyles(() => ({
   agregarCarrito: {
@@ -24,7 +25,7 @@ const useStyle = makeStyles(() => ({
 }));
 
 const ItemDetail = ({ item }) => {
-  const {addItem} = useContext(CartContext)
+  const { addItem, removeItem } = useContext(CartContext);
   const { title, pictureUrl, stock, details } = item || [];
   const classes = useStyle();
   const history = useNavigate();
@@ -34,11 +35,13 @@ const ItemDetail = ({ item }) => {
   const [itemsQty, setItemsQty] = useState(1);
   const [agregarCarrito, setAgregarCarrito] = useState(false);
   const [cambiarBotones, setCambiarBotones] = useState(false);
+  const [eliminarCarrito, setEliminarCarrito] = useState(false);
   const onAdd = () => {
     setCambiarBotones(true);
   };
-  const mostrarCarrito = (item, itemsQty) => {
-    addItem(item) 
+
+  const mostrarCarrito = () => {
+    addItem({ qty: itemsQty, ...item });
     setAgregarCarrito(true);
   };
 
@@ -56,14 +59,20 @@ const ItemDetail = ({ item }) => {
           <p>Stock disponible: {stock}</p>
         </div>
 
-        <ItemCount stock={item.stock} itemsQty={itemsQty} setItemsQty={setItemsQty} onAdd={onAdd} />
+        <ItemCount
+          stock={item.stock}
+          itemsQty={itemsQty}
+          setItemsQty={setItemsQty}
+          onAdd={onAdd}
+        />
         {cambiarBotones && (
           <>
             <div className={classes.agregarCarrito}>
               <Button
                 variant="contained"
                 className={classes.contador}
-                onClick={() => mostrarCarrito (item, itemsQty)}>
+                onClick={() => mostrarCarrito()}
+              >
                 Agregar al carrito
               </Button>
               {agregarCarrito && (

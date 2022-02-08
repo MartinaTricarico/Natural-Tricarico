@@ -1,23 +1,30 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
 import { Button } from "@material-ui/core";
+import { CartContext } from "../context/CartContext.js";
 import { ShoppingCart } from "@material-ui/icons";
-import {CartContext} from "../context/CartContext.js";
 
 const CartWidget = () => {
   const { items } = useContext(CartContext);
+  const [cantidadItems, setCantidadItems] = useState();
 
   useEffect(() => {
-    console.log(items);
+    let total = 0;
+    items.forEach((item) => {
+      total += item.qty;
+    });
+    setCantidadItems(total);
   }, [items]);
+
   return (
-    <>
-      <div>
+    <div>
+      {cantidadItems >= 1 ? (
         <Button className="cart" style={{ color: "black" }}>
           <ShoppingCart style={{ color: "black" }} />
-          <p>{items.length}</p>
+          <p>{cantidadItems}</p>
         </Button>
-      </div>
-    </>
+      ) : null}
+    </div>
   );
 };
 
