@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD_USTT-TUNG6uf1FLTZ7LJ7iyixorEjCQ",
@@ -8,11 +8,9 @@ const firebaseConfig = {
   storageBucket: "natural-tricarico-8ecab.appspot.com",
   messagingSenderId: "114127471254",
   appId: "1:114127471254:web:7c19c9d48846caccf878b7",
-  measurementId: "G-EZVQ7GJQE1"
+  measurementId: "G-EZVQ7GJQE1",
 };
 
-
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 export const db = getFirestore(app);
