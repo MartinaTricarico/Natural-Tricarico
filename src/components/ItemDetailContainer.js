@@ -23,30 +23,12 @@ const useStyle = makeStyles(() => ({
   },
 }));
 
-export const getFetch = (id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const product = productListData.find((product) => {
-        return product.id === id;
-      });
-      resolve(product);
-    }, 2000);
-  });
-};
-
 const ItemDetailContainer = () => {
   const classes = useStyle();
   const { id } = useParams();
   const [product, setProduct] = useState();
 
   useEffect(() => {
-    getFetch(id).then((results) => {
-      setProduct(results);
-    });
-  }, [id]);
-
-  useEffect(() => {
-    console.log("usando un query y un where para filtrar");
     const getFromFirebase = async () => {
       const q = query(
         collection(db, "items"),
@@ -54,13 +36,10 @@ const ItemDetailContainer = () => {
       );
       const snapshot = await getDocs(q);
       snapshot.forEach((doc) => {
-        console.log("El id", doc.id);
-        console.log(doc.data());
+        setProduct((prev) => [...prev, doc.data()]);
       });
-      console.log("usando getDoc");
       const docRef = doc(db, "items", "61gLTwUnxwV7BhDsKoIF");
       const docSnapshot = await getDoc(docRef);
-      console.log(docSnapshot.data());
     };
     getFromFirebase();
   }, []);
