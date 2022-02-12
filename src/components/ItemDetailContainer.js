@@ -1,19 +1,12 @@
-import React from "react";
+import { collection, doc, getDoc, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+
 import ItemDetail from "./ItemDetail.js";
 import Loading from "./Loading.js";
-import { productListData } from "./ProductListData.js";
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import React from "react";
 import { db } from "../Firebase.js";
+import { makeStyles } from "@material-ui/core";
+import { useParams } from "react-router-dom";
 
 const useStyle = makeStyles(() => ({
   detailContainer: {
@@ -34,12 +27,10 @@ const ItemDetailContainer = () => {
         collection(db, "items"),
         where("name", "==", "Zanahoria")
       );
-      const snapshot = await getDocs(q);
-      snapshot.forEach((doc) => {
-        setProduct((prev) => [...prev, doc.data()]);
-      });
-      const docRef = doc(db, "items", "61gLTwUnxwV7BhDsKoIF");
+
+      const docRef = doc(db, "items", "IUiORpDS8l65t5HnDmU1");
       const docSnapshot = await getDoc(docRef);
+      setProduct(docSnapshot.data());
     };
     getFromFirebase();
   }, []);

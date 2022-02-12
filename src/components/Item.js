@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import { Button, makeStyles } from "@material-ui/core";
+
 import { NavLink } from "react-router-dom";
+import React from "react";
 
 const useStyle = makeStyles(() => ({
   titulo: {
@@ -18,14 +19,15 @@ const useStyle = makeStyles(() => ({
 
 const Item = ({ item }) => {
   const classes = useStyle();
-  const { title, pictureUrl, stock, id } = item || [];
+  const { name, imageUrl, stock, id } = item || [];
+
   return (
     <div>
       <div>
         <div>
-          <h2 className={classes.titulo}>{title}</h2>
+          <h2 className={classes.titulo}>{name}</h2>
         </div>
-        <img src={pictureUrl} alt="" width={130} />
+        <img src={imageUrl} alt="" width={130} />
 
         <div>
           <NavLink to={`/item/${id}`} style={{ textDecoration: "none" }}>

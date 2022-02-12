@@ -32,14 +32,11 @@ const Cart = () => {
                     <div key={index}>
                       <Row>
                         <Col xs={2}>
-                          <img
-                            style={{ height: "80px" }}
-                            src={item.pictureUrl}
-                          />
+                          <img style={{ height: "80px" }} src={item.imageUrl} />
                         </Col>
                         <Col xs={4}>
                           <h4 className="product-name">
-                            <strong>{item.title}</strong>
+                            <strong>{item.name}</strong>
                           </h4>
                           <h4>
                             <small> Detalle: {item.details}</small>

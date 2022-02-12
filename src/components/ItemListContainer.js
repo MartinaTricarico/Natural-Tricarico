@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { productListData } from "./ProductListData.js";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs, query } from "firebase/firestore";
+
 import ItemList from "./ItemList";
+import { db } from "../Firebase.js";
 import { makeStyles } from "@material-ui/core";
 
 const useStyle = makeStyles(() => ({
@@ -10,35 +12,34 @@ const useStyle = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-end",
-  }
-    
+  },
 }));
-
-export const getFetch = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(productListData);
-  }, 2000);
-});
 
 const ItemListContainer = ({ props }) => {
   const classes = useStyle();
   const [productos, setProductListData] = useState([]);
 
-  getFetch
-    .then((results) => {
-      setProductListData(results);
-    })
-    .catch((err) => {
-      console.log("Hay un error", err);
-    });
+  useEffect(() => {
+    const getFromFirebase = async () => {
+      const q = query(collection(db, "items"));
+      const snapshot = await getDocs(q);
+      snapshot.forEach((doc) => {
+        setProductListData((prev) => [...prev, doc.data()]);
+      });
+    };
+    getFromFirebase();
+  }, []);
+
+  useEffect(() => {
+    console.log(productos);
+  }, [productos]);
 
   return (
     <>
       <div className={classes.catalog}>
         <h3>Catálogo</h3>
       </div>
-
-      <ItemList />
+      <ItemList productos={productos} />
     </>
   );
 };

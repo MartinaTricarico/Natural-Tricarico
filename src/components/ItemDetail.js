@@ -26,7 +26,7 @@ const useStyle = makeStyles(() => ({
 
 const ItemDetail = ({ item }) => {
   const { addItem, removeItem } = useContext(CartContext);
-  const { title, pictureUrl, stock, details } = item || [];
+  const { name, imageUrl, stock, details } = item || [];
   const classes = useStyle();
   const history = useNavigate();
   const volver = () => {
@@ -49,10 +49,10 @@ const ItemDetail = ({ item }) => {
     <>
       <div className={classes.count}>
         <h5 className={classes.titulo}>
-          <b>{title}</b>
+          <b>{name}</b>
         </h5>
 
-        <img src={pictureUrl} alt="" width={150}></img>
+        <img src={imageUrl} alt="" width={150}></img>
         <p className={classes.parrafo}>Detalle: {details}</p>
 
         <div>
