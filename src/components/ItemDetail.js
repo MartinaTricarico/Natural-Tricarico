@@ -35,7 +35,6 @@ const ItemDetail = ({ item }) => {
   const [itemsQty, setItemsQty] = useState(1);
   const [agregarCarrito, setAgregarCarrito] = useState(false);
   const [cambiarBotones, setCambiarBotones] = useState(false);
-  const [eliminarCarrito, setEliminarCarrito] = useState(false);
   const onAdd = () => {
     setCambiarBotones(true);
   };

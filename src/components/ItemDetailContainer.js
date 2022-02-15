@@ -1,10 +1,8 @@
-import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-
 import ItemDetail from "./ItemDetail.js";
 import Loading from "./Loading.js";
 import React from "react";
-import { db } from "../Firebase.js";
 import { makeStyles } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 
@@ -18,22 +16,16 @@ const useStyle = makeStyles(() => ({
 
 const ItemDetailContainer = () => {
   const classes = useStyle();
-  const { id } = useParams();
+  const { idProd } = useParams();
   const [product, setProduct] = useState();
 
   useEffect(() => {
-    const getFromFirebase = async () => {
-      const q = query(
-        collection(db, "items"),
-        where("name", "==", "Zanahoria")
-      );
-
-      const docRef = doc(db, "items", "IUiORpDS8l65t5HnDmU1");
-      const docSnapshot = await getDoc(docRef);
-      setProduct(docSnapshot.data());
-    };
-    getFromFirebase();
-  }, []);
+    const db = getFirestore();
+    const queryProduct = doc(db, `productos/${idProd}`);
+    getDoc(queryProduct).then((resp) => {
+      setProduct({ id: resp.id, ...resp.data() });
+    });
+  }, [idProd]);
 
   return (
     <div className={classes.detailContainer}>
