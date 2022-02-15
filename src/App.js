@@ -7,7 +7,6 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
 
-
 const App = () => {
   return (
     <div className="App">
@@ -15,14 +14,13 @@ const App = () => {
         <BrowserRouter>
           <NavBar mensaje="Natural Tienda" />
           <Routes>
-            <Route path="/cart" element={<Cart/>}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
             <Route exact path="/" element={<ItemListContainer />} />
             <Route path="/category/:id" element={<ItemListContainer />} />
             <Route path="/item/:id" element={<ItemDetailContainer />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
-
     </div>
   );
 };

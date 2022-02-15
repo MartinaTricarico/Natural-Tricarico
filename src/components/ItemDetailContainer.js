@@ -16,16 +16,16 @@ const useStyle = makeStyles(() => ({
 
 const ItemDetailContainer = () => {
   const classes = useStyle();
-  const { idProd } = useParams();
+  const { id } = useParams();
   const [product, setProduct] = useState();
 
   useEffect(() => {
     const db = getFirestore();
-    const queryProduct = doc(db, `productos/${idProd}`);
+    const queryProduct = doc(db, `items`, id);
     getDoc(queryProduct).then((resp) => {
       setProduct({ id: resp.id, ...resp.data() });
     });
-  }, [idProd]);
+  }, [id]);
 
   return (
     <div className={classes.detailContainer}>
