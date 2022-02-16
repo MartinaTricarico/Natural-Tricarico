@@ -1,5 +1,5 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { db } from "../Firebase.js";
 import { CartContext } from "../context/CartContext";
 import { Delete } from "@material-ui/icons";
@@ -9,6 +9,7 @@ import { addDoc, collection } from "firebase/firestore";
 const Cart = () => {
   const { items, removeItem, totalCart } = useContext(CartContext);
   const [success, setSuccess] = useState(false);
+  const [total, setTotal] = useState(0);
   const [orderId, setOrderId] = useState({
     name: "",
     lastname: "",
@@ -38,6 +39,10 @@ const Cart = () => {
       email: "email@mail.com",
     };
 
+    const totalGlobal = items.reduce((a, b) => {
+      return a.qty * a.price + b.qty * b.price;
+    });
+
     const order = { buyers: buyer, items: itemsToBuy, total: 1231 };
     addDoc(collection(db, "orders"), order)
       .then((doc) => {
@@ -49,6 +54,15 @@ const Cart = () => {
         console.log("algo malo paso", err);
       });
   };
+
+  useEffect(() => {
+    if (items.length > 0) {
+      const totalGlobal = items.reduce((a, b) => {
+        return a.qty * a.price + b.qty * b.price;
+      });
+      setTotal(totalGlobal);
+    }
+  }, [items]);
 
   return (
     <div>
@@ -86,7 +100,7 @@ const Cart = () => {
                               <strong>{item.name}</strong>
                             </h4>
                             <h4>
-                              <small> Detalle: {item.details}</small>
+                              <small> Detalle: {item.detail}</small>
                             </h4>
                           </Col>
                           <Col xs={6}>
@@ -151,14 +165,14 @@ const Cart = () => {
       {success ? (
         <div
           style={{
-            top: 0,
+            marginTop: "50",
             left: 0,
             width: "100%",
             height: "100%",
-            background: "rgba(0,0,0,0.7)",
+            background: "rgba(0,0,0,0.10)",
           }}
         >
-          <h1>Tu compra se ha realizado con exito</h1>
+          <h1>Tu compra se ha realizado con éxito</h1>
           <p>Puedes hacer el seguimiento con el siguiente id {orderId}</p>
           <Button as={Link} to="/">
             Seguir comprando
