@@ -19,7 +19,7 @@ const useStyle = makeStyles(() => ({
 
 const Item = ({ item }) => {
   const classes = useStyle();
-  const { name, imageUrl, stock, id } = item || [];
+  const { name, imageUrl, stock, id, key } = item || [];
 
   return (
     <div>
@@ -30,7 +30,7 @@ const Item = ({ item }) => {
         <img src={imageUrl} alt="" width={130} />
 
         <div>
-          <NavLink to={`/item/${id}`} style={{ textDecoration: "none" }}>
+          <NavLink to={`/item/${key}`} style={{ textDecoration: "none" }}>
             <Button variant="contained" className={classes.botones}>
               Ver detalle del producto
             </Button>

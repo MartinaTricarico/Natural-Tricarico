@@ -24,7 +24,7 @@ const ItemListContainer = ({ props }) => {
       const q = query(collection(db, "items"));
       const snapshot = await getDocs(q);
       snapshot.forEach((doc) => {
-        setProductListData((prev) => [...prev, doc.data()]);
+        setProductListData((prev) => [...prev, { ...doc.data(), key: doc.id }]);
       });
     };
     getFromFirebase();

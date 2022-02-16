@@ -1,12 +1,47 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import React, { useContext } from "react";
-
+import { db } from "../Firebase.js";
 import { CartContext } from "../context/CartContext";
 import { Delete } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
 
 const Cart = () => {
   const { items, removeItem, totalCart } = useContext(CartContext);
+
+  const checkout = () => {
+    console.log(items);
+    if (items.length === 0) {
+      alert("no tienes items en el carrito");
+      return;
+    }
+    const itemsToBuy = items.map((item) => {
+      return {
+        id: item.id,
+        title: item.name,
+        price: item.price,
+        qty: item.qty,
+      };
+    });
+
+    const buyer = {
+      name: "Martina Tricarico",
+      phone: "12474121",
+      email: "email@mail.com",
+    };
+
+    const order = { buyers: buyer, items: itemsToBuy, total: 1231 };
+    addDoc(
+      collection(db, "orders")
+        .then((doc) => {
+          console.log("el id de mi orden creada es ", doc.id);
+        })
+        .catch((err) => {
+          console.log("algo malo paso", err);
+        })
+    );
+  };
+
   return (
     <Container>
       <Row>
@@ -90,7 +125,9 @@ const Cart = () => {
                   </h4>
                 </Col>
                 <Col xs={3}>
-                  <Button variant="success">Terminar compra</Button>
+                  <Button variant="success" onClick={checkout}>
+                    Terminar compra
+                  </Button>
                 </Col>
               </Row>
             </Card.Footer>
