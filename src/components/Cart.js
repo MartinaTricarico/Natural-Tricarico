@@ -160,6 +160,9 @@ const Cart = () => {
         >
           <h1>Tu compra se ha realizado con exito</h1>
           <p>Puedes hacer el seguimiento con el siguiente id {orderId}</p>
+          <Button as={Link} to="/">
+            Seguir comprando
+          </Button>
         </div>
       ) : null}
     </div>
