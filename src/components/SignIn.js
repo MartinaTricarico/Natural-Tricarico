@@ -1,6 +1,6 @@
 import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../firebase";
-import googleLogo from "../assets/images/google_logo.svg";
+import { auth, googleProvider } from "../Firebase";
+import googleLogo from "../assets/google_logo.svg";
 
 const SignIn = () => {
   const signInWithGoogle = () => {

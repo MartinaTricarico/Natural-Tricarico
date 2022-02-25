@@ -1,9 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { Link, NavLink } from "react-router-dom";
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment } from "react";
 import CartWidget from "./CartWidget";
-import { CartContext } from "../context/CartContext";
-
 
 const useStyle = makeStyles(() => ({
   containerLink: {
@@ -47,7 +45,7 @@ const useStyle = makeStyles(() => ({
 
 const NavBar = (props) => {
   const classes = useStyle();
-  
+
   return (
     <Fragment>
       <div className={classes.containerLink}>
@@ -69,7 +67,7 @@ const NavBar = (props) => {
           </Link>
 
           <Link
-            to="/acount"
+            to="/account"
             className={classes.buttonLink}
             style={{ fontWeight: "bold", color: "#7EB488" }}
           >
@@ -77,9 +75,8 @@ const NavBar = (props) => {
           </Link>
 
           <NavLink to="/cart">
-              <CartWidget/>
+            <CartWidget />
           </NavLink>
-
         </div>
       </div>
     </Fragment>

@@ -1,9 +1,10 @@
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import React, { useContext, useState, useEffect } from "react";
-import { db } from "../Firebase.js";
+import { auth, db } from "../Firebase.js";
 import { CartContext } from "../context/CartContext";
 import { Delete } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
 const Cart = () => {
@@ -33,17 +34,20 @@ const Cart = () => {
       };
     });
 
+    const user = auth.currentUser;
+    if (user !== null) {
+      user.providerData.forEach((profile) => {
+        console.log("  Name: " + profile.displayName);
+        console.log("  Email: " + profile.email);
+      });
+    }
+
     const buyer = {
-      name: "Martina Tricarico",
-      phone: "12474121",
-      email: "email@mail.com",
+      name: user.displayName,
+      email: user.email,
     };
 
-    const totalGlobal = items.reduce((a, b) => {
-      return a.qty * a.price + b.qty * b.price;
-    });
-
-    const order = { buyers: buyer, items: itemsToBuy, total: 1231 };
+    const order = { buyers: buyer, items: itemsToBuy };
     addDoc(collection(db, "orders"), order)
       .then((doc) => {
         setOrderId(doc.id);
@@ -174,6 +178,7 @@ const Cart = () => {
         >
           <h1>Tu compra se ha realizado con éxito</h1>
           <p>Puedes hacer el seguimiento con el siguiente id {orderId}</p>
+
           <Button as={Link} to="/">
             Seguir comprando
           </Button>
