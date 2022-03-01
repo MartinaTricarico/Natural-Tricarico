@@ -112,14 +112,14 @@ const Cart = () => {
                                   <strong>${item.price} /kg</strong>
                                 </h6>
                               </Col>
-                              <Col xs={3}>
+                              <Col xs={4}>
                                 <input
                                   type="text"
                                   className="form-control input-sm"
                                   value={item.qty}
                                 />
                               </Col>
-                              <Col xs={3}>
+                              <Col xs={2}>
                                 <Button
                                   xs={2}
                                   variant="danger"
@@ -136,7 +136,7 @@ const Cart = () => {
                     );
                   })
                 ) : (
-                  <div className="">
+                  <div className="comprando">
                     <p style={{ fontSize: "20px" }}>No hay productos</p>
                     <Link to="/products">
                       <Button variant="outlined">Continuar comprando</Button>
