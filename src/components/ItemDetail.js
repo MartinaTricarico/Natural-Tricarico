@@ -22,11 +22,18 @@ const useStyle = makeStyles(() => ({
     backgroundColor: "#508d62",
     borderRadius: "15px",
   },
+  count: {
+    display: "flex",
+    margin: "20px",
+    flexDirection: "column",
+    flexWrap: "nowrap",
+    alignItems: "center",
+  },
 }));
 
 const ItemDetail = ({ item }) => {
   const { addItem, removeItem } = useContext(CartContext);
-  const { name, imageUrl, stock, details } = item || [];
+  const { name, imageUrl, stock, detail } = item || [];
   const classes = useStyle();
   const history = useNavigate();
   const volver = () => {
@@ -47,12 +54,19 @@ const ItemDetail = ({ item }) => {
   return (
     <>
       <div className={classes.count}>
-        <h5 className={classes.titulo}>
-          <b>{name}</b>
-        </h5>
+        <div className={classes.titulo}>
+          <h5>
+            <b>{name}</b>
+          </h5>
+        </div>
 
-        <img src={imageUrl} alt="" width={150}></img>
-        <p className={classes.parrafo}>Detalle: {details}</p>
+        <div>
+          <img src={imageUrl} alt="" width={180}></img>
+        </div>
+
+        <div className={classes.parrafo}>
+          <p>Detalle: {detail}</p>
+        </div>
 
         <div>
           <p>Stock disponible: {stock}</p>

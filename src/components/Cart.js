@@ -1,8 +1,9 @@
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import React, { useContext, useState, useEffect } from "react";
 import { auth, db } from "../Firebase.js";
 import { CartContext } from "../context/CartContext";
 import { Delete } from "@material-ui/icons";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
@@ -78,10 +79,7 @@ const Cart = () => {
                 <Card.Title className="panel-title">
                   <Row>
                     <Col xs={6}>
-                      <h5>
-                        <span className="glyphicon glyphicon-shopping-cart"></span>
-                        Carrito de compras
-                      </h5>
+                      <h5 style={{ display: "flex" }}>Carrito de compras</h5>
                     </Col>
                     <Col xs={6}></Col>
                   </Row>
@@ -100,12 +98,12 @@ const Cart = () => {
                             />
                           </Col>
                           <Col xs={4}>
-                            <h4 className="product-name">
+                            <h5 className="product-name">
                               <strong>{item.name}</strong>
-                            </h4>
-                            <h4>
+                            </h5>
+                            <h6>
                               <small> Detalle: {item.detail}</small>
-                            </h4>
+                            </h6>
                           </Col>
                           <Col xs={6}>
                             <Row>
@@ -114,17 +112,16 @@ const Cart = () => {
                                   <strong>${item.price} /kg</strong>
                                 </h6>
                               </Col>
-                              <Col xs={4}>
+                              <Col xs={3}>
                                 <input
                                   type="text"
                                   className="form-control input-sm"
                                   value={item.qty}
                                 />
                               </Col>
-                              <Col xs={2}>
+                              <Col xs={3}>
                                 <Button
                                   xs={2}
-                                  variant="primary"
                                   variant="danger"
                                   onClick={() => removeItem(item.id)}
                                 >
@@ -140,9 +137,9 @@ const Cart = () => {
                   })
                 ) : (
                   <div className="">
-                    <p>No hay items</p>
-                    <Link to="/">
-                      <Button>Continuar comprando</Button>
+                    <p style={{ fontSize: "20px" }}>No hay productos</p>
+                    <Link to="/products">
+                      <Button variant="outlined">Continuar comprando</Button>
                     </Link>
                   </div>
                 )}
@@ -150,12 +147,16 @@ const Cart = () => {
               <Card.Footer>
                 <Row className="text-center">
                   <Col xs={9}>
-                    <h4 className="text-right">
+                    <h4 className="text-right" style={{ margin: "20px" }}>
                       Total <strong>$ {totalCart}</strong>
                     </h4>
                   </Col>
                   <Col xs={3}>
-                    <Button variant="success" onClick={checkout}>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={checkout}
+                    >
                       Terminar compra
                     </Button>
                   </Col>
@@ -173,13 +174,20 @@ const Cart = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            background: "rgba(0,0,0,0.10)",
+            background: "rgb(183, 228, 199, 0.4)",
           }}
         >
-          <h1>Tu compra se ha realizado con éxito</h1>
+          <h1 style={{ margin: "25px", height: "100%" }}>
+            Tu compra se ha realizado con éxito
+          </h1>
           <p>Puedes hacer el seguimiento con el siguiente id {orderId}</p>
 
-          <Button as={Link} to="/">
+          <Button
+            variant="outlined"
+            as={Link}
+            to="/products"
+            style={{ margin: "20px", marginBottom: "-30px" }}
+          >
             Seguir comprando
           </Button>
         </div>

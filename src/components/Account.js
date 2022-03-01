@@ -27,7 +27,9 @@ const Account = () => {
   return (
     <div className="Account">
       <header>
-        <h1>{user ? <UserLoggedIn /> : "Mi cuenta"}</h1>
+        <h2 style={{ margin: "10px", fontFamily: "Calibri" }}>
+          {user ? <UserLoggedIn /> : "Mi cuenta"}
+        </h2>
         <SignOut />
       </header>
       <section>{user ? null : <Welcome />}</section>

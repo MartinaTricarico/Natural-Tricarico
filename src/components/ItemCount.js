@@ -6,11 +6,11 @@ import { Add, Remove } from "@material-ui/icons";
 const useStyle = makeStyles(() => ({
   count: {
     width: "343px",
+    margin: "29px",
     display: "flex",
+    padding: "28px",
     flexDirection: "column",
     alignItems: "center",
-    border: "1px solid rgb(57, 112, 50)",
-    borderRadius: "25px",
   },
   titulo: {
     margin: "15px",
@@ -36,17 +36,17 @@ const useStyle = makeStyles(() => ({
   },
 }));
 
-const ItemCount = ({ stock, itemsQty, setItemsQty , onAdd }) => {
+const ItemCount = ({ stock, itemsQty, setItemsQty, onAdd }) => {
   const classes = useStyle();
-  
+
   const AddProduct = () => {
-    setItemsQty (itemsQty + 1)
-    onAdd ()
-  }
+    setItemsQty(itemsQty + 1);
+    onAdd();
+  };
   const RestProduct = () => {
-    setItemsQty (itemsQty - 1 )
-    onAdd()
-  }
+    setItemsQty(itemsQty - 1);
+    onAdd();
+  };
 
   return (
     <div className={classes.container}>

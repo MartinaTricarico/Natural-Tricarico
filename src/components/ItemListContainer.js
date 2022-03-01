@@ -7,11 +7,15 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyle = makeStyles(() => ({
   catalog: {
-    background: "#e9f5db",
-    height: "45px",
+    height: "10px",
+    paddingTop: "20px",
+    padding: "5px",
     display: "flex",
+    alignItems: "center",
+    width: "100%",
+    fontFamily: "Gill Sans",
     justifyContent: "center",
-    alignItems: "flex-end",
+    borderRadius: "15px",
   },
 }));
 
@@ -37,7 +41,7 @@ const ItemListContainer = ({ props }) => {
   return (
     <>
       <div className={classes.catalog}>
-        <h3>Catálogo</h3>
+        <h2>CATÁLOGO</h2>
       </div>
       <ItemList productos={productos} />
     </>

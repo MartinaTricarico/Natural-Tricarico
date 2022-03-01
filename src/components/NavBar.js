@@ -49,12 +49,12 @@ const NavBar = (props) => {
   return (
     <Fragment>
       <div className={classes.containerLink}>
-        <Link to="/" className={classes.logo}>
+        <Link to="/inicio" className={classes.logo}>
           <h1>{props.mensaje}</h1>
         </Link>
 
         <div className={classes.customList}>
-          <Link to="/" className={classes.buttonLink}>
+          <Link to="/inicio" className={classes.buttonLink}>
             Inicio
           </Link>
 

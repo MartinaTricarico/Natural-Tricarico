@@ -1,6 +1,7 @@
 import Item from "./Item";
 import React from "react";
 import { makeStyles } from "@material-ui/core";
+import "../styles/ItemList.css";
 
 const useStyle = makeStyles(() => ({
   categoryProducts: {
@@ -16,7 +17,7 @@ const useStyle = makeStyles(() => ({
 const ItemList = ({ productos }) => {
   const classes = useStyle();
   return (
-    <div className={classes.categoryProducts}>
+    <div className="categoryProducts">
       {productos.map((items) => {
         return (
           <div key={items.id}>
