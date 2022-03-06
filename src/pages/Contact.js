@@ -10,7 +10,7 @@ const Contact = () => {
       sx={{ width: "100%", maxWidth: 600, textAlign: "Left", margin: "25px" }}
     >
       <Typography
-        classname="contacto"
+        className="contacto"
         variant="h3"
         component="div"
         gutterBottom

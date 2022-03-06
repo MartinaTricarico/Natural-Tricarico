@@ -1,8 +1,7 @@
 import React from "react";
-import  carritoLoading from "../assets/carritoLoading.gif";
+import carritoLoading from "../assets/carritoLoading.gif";
 
 const Loading = () => {
-
   return (
     <div
       style={{
@@ -15,8 +14,9 @@ const Loading = () => {
         width: "100%",
         height: "100%",
         backgroundColor: "none",
-      }}>
-        <img src={carritoLoading}></img>
+      }}
+    >
+      <img src={carritoLoading} alt="carrito"></img>
     </div>
   );
 };

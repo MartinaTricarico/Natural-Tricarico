@@ -1,7 +1,7 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../Firebase";
 import googleLogo from "../assets/google_logo.svg";
-import { Button, makeStyles } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const SignIn = () => {
   const signInWithGoogle = () => {

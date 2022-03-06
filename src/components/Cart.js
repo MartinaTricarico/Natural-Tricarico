@@ -5,7 +5,6 @@ import { CartContext } from "../context/CartContext";
 import { Delete } from "@material-ui/icons";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import { getAuth } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
 const Cart = () => {
@@ -95,6 +94,7 @@ const Cart = () => {
                             <img
                               style={{ height: "80px" }}
                               src={item.imageUrl}
+                              alt="icono"
                             />
                           </Col>
                           <Col xs={4}>
@@ -114,6 +114,7 @@ const Cart = () => {
                               </Col>
                               <Col xs={4}>
                                 <input
+                                  readOnly={!!item}
                                   type="text"
                                   className="form-control input-sm"
                                   value={item.qty}

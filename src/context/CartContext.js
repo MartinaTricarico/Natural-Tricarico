@@ -1,8 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 
-import ItemCount from "../components/ItemCount";
-import ItemDetail from "../components/ItemDetail";
-
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
